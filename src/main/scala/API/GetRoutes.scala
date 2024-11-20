@@ -1,11 +1,14 @@
 package API
+import zio._
 import zio.http._
-import zio.http.codec._
-import zio.http.Method
-import zio.http.Status
-import gedcom.{Person, GedcomProcessor}
 
 object GetRoutes {
-
-  val allPersons: List[Person] =
+  val app: Http[Any, Throwable, Request, Response] =
+    Http.collectZIO[Request] {
+      case Method.GET -> Root / "persons" =>
+        for  {
+          service <- ZIO.service[GedcomService]
+          response <- ZIO.succeed(Response.json(service.persons.toJson))
+        } yield response
+    }
 }
