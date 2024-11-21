@@ -51,7 +51,7 @@ object GedcomParser {
           && builder.birthDate.isEmpty
           && l.length > 7 =>
           builder.copy(birthPlace = Some(l.substring(7).replaceAll(regexComma, "").trim))
-        case l if l.startsWith("1 DEAT") => builder.copy(hasBirthEvent = true)
+        case l if l.startsWith("1 DEAT") => builder.copy(hasDeathEvent = true)
         case l if l.startsWith("2 DATE")
           && builder.hasDeathEvent
           && builder.deathDate.isEmpty

@@ -1,4 +1,5 @@
-import gedcom.{GedcomProcessor, GedcomReader, Person}
+package gedcom
+
 import zio._
 
 case class GedcomService(persons:List[Person])
@@ -14,4 +15,7 @@ object GedcomService {
       GedcomService(persons)
     }
   )
+
+  def getPersons: ZIO[GedcomService, Nothing, List[Person]] =
+    ZIO.serviceWith[GedcomService] (_.persons)
 }
