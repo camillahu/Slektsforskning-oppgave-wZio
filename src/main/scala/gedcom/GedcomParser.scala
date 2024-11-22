@@ -5,13 +5,6 @@ package gedcom
 
 object GedcomParser {
 
-//  def parseGedcom(lines: List[String]): (Option[Person], List[Family]) = {
-//    val person = parsePerson(lines)
-//    val personsMap = person.map(p => p.id -> p).toMap
-//    val families = parseFamily(lines, personsMap)
-//    (person, families)
-//  }
-
   def parsePerson(lines: List[String]): Option[Person] = {
     case class PersonBuilder(id: String = "",
                              name: Option[String] = None,
@@ -22,7 +15,6 @@ object GedcomParser {
                              hasBirthEvent: Boolean = false,
                              hasDeathEvent: Boolean = false
                             )
-
 
     def parseName(nameLine: String): Option[String] = {
       nameLine.split("/").toList match {
