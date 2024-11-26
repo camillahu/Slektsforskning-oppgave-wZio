@@ -45,8 +45,9 @@ object GetRoutes {
 
 
 //GetRoutes definerer et singleton-objekt som inneholder API-endepunktene.
-//Routes trenger GedcomService for å fungere (dependency).
-// Nothing spesifiserer at ingen feil forventes. Her kan feilhåndteringer spesifiseres.
+//Routes trenger GedcomService for å fungere.
+// Nothing spesifiserer at ingen feil forventes. Her kan feilhåndteringer spesifiseres, eller settes til Nothing og
+// håndtere feil andre steder.F
 
 //Routes inneholder en liste over HTTP-ruter som blir håndtert av handler.
 
@@ -57,4 +58,23 @@ object GetRoutes {
 
 //for-comprehension/for-uttrykk:
 // persons <- GedcomService.getPersons henter listen over personer fra GedcomService.
-//
+// displayedPersons = ... mapper persons og formaterer hver person ved bruk av displayPerson og mkstring
+// response <- ZIO.succeed putter den formaterte teksten inn i en HTTP-respons
+//yield response returnerer responsen som svar på HTTP-forespørslen.
+
+//Konsepter brukt:
+//Declarative- vi beskriver hva en rute skal gjøre, ikke hvordan.
+//Effectful Computations- ZIO-effektene sørger for at operasjoner som GedcomService.getPersons og responser blir
+//    håndtert sikkert og asynkront.
+//Reusability: Utils og GedcomService gjør koden modulær og testbar.
+
+
+//(Using the ZIO.succeed method, you can create an effect that, when executed, will succeed with the specified value.
+// The succeed method takes a so-called by-name parameter, which ensures that if you pass the method some code to execute,
+// that this code will be stored inside the ZIO effect so that it can be managed by ZIO,
+// and benefit from features like retries, timeouts, and automatic error logging.
+// Using the ZIO.fail method, you can create an effect that, when executed, will fail with the specified value.)
+//https://zio.dev/overview/creating-effects/
+
+
+

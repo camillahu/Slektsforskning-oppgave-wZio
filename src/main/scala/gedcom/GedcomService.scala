@@ -2,7 +2,7 @@ package gedcom
 
 import zio._
 
-case class GedcomService(persons:List[Person])
+case class GedcomService(persons: List[Person])
 
 object GedcomService {
 
@@ -20,7 +20,7 @@ object GedcomService {
   )
 
   def getPersons: ZIO[GedcomService, Nothing, List[Person]] = {
-    ZIO.serviceWith[GedcomService] (_.persons)
+    ZIO.serviceWith[GedcomService](_.persons)
     //en hjelpemetode som henter alle personer fra dette objektet.
   }
 }

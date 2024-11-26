@@ -8,7 +8,7 @@ object Main extends ZIOAppDefault {
     Server.serve(GetRoutes.routes).provide(Server.default, GedcomService.live)
 }
 
-//Main er et singleton objekt- en klasse som gar nøyaktig en instans. Standaren i scala for å definere inngangspunkt
+//Main er et singleton objekt- en klasse som gir nøyaktig en instans. Standaren i scala for å definere inngangspunkt
 
 // ZIOAppDefauls er en baseklasse for ZIO-applikasjoner som definerer hvordan programmet starter.
 // ved å override run. ZIOAppDefault forenkler oppsettet av et ZIO-program.
