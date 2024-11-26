@@ -2,7 +2,6 @@ package API
 import zio._
 import zio.http._
 import gedcom.GedcomService
-import gedcom.GedcomProcessor
 import _root_.Utils
 
 object GetRoutes {
@@ -43,3 +42,19 @@ object GetRoutes {
   }
   )
 }
+
+
+//GetRoutes definerer et singleton-objekt som inneholder API-endepunktene.
+//Routes trenger GedcomService for å fungere (dependency).
+// Nothing spesifiserer at ingen feil forventes. Her kan feilhåndteringer spesifiseres.
+
+//Routes inneholder en liste over HTTP-ruter som blir håndtert av handler.
+
+//Forklaring av Method.GET / "persons":
+//
+//Method.GET / "persons" definerer at denne ruten svarer på GET-forespørsler til /persons endepunktet.
+//handler brukes for å binde en funksjon til denne ruten.
+
+//for-comprehension/for-uttrykk:
+// persons <- GedcomService.getPersons henter listen over personer fra GedcomService.
+//
